@@ -75,8 +75,12 @@ def emeryradio(user_data, command):
     centralD = 'D' if (utcdt.astimezone(CT).utcoffset().total_seconds() == -18000) else 'S'
     easternD = 'D' if (utcdt.astimezone(ET).utcoffset().total_seconds() == -14400) else 'S'
     europeanS = 'S' if (utcdt.astimezone(CET).utcoffset().total_seconds() == 7200) else ''
-    
-    #for i in tzshown
+                  
+    for i in tzshown:
+        output.append(f'{utcdt.astimezone(i).strftime(wkdyformat + ' ' + timeformat)} P{pacificD}T')
+        output.append(f"  ╰ GMT−{8 - (pacificD == 'D')}")
+        if (tzshown[i][3]) output.append(": {tzshown[i][3]}")
+            
                   
     output.append(f'{utcdt.astimezone(PT).strftime("%A %F %H:%M.%S")} P{pacificD}T (UTC standard)')
     output.append(f"  ╰ GMT−{8 - (pacificD == 'D')}: San Francisco, San Diego")
